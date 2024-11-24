@@ -26,7 +26,7 @@ K_values = []
 CV_errors = []
 
 if os.path.exists(input_path + 'cv_error.txt'):
-    with open('cv_error.txt', 'r') as file: 
+    with open(input_path + 'cv_error.txt', 'r') as file: 
         for line in file:
             if "CV error" in line:
                 parts = line.split(':')
