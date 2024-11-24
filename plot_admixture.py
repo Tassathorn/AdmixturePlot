@@ -22,6 +22,29 @@ sample_ids = fam_data[1].to_list()
 
 output_pdf = PdfPages('admixture_plots.pdf')
 
+K_values = []
+CV_errors = []
+
+if os.path.exists('cv_error.txt'):
+    with open('cv_error.txt', 'r') as file: 
+        for line in file:
+            if "CV error" in line:
+                parts = line.split(':')
+                K = int(parts[0].split('=')[1].replace(')', '').strip()) 
+                CV_error = float(parts[1].strip())
+                K_values.append(K)
+                CV_errors.append(CV_error)
+
+    fig, ax = plt.subplots(figsize=(10, 5.625))
+    plt.plot(K_values, CV_errors, marker='o', linestyle='-', color='b', label='CV Error')
+
+    plt.xlabel('K (Number of Ancestral Populations)')
+    plt.ylabel('CV Error')
+    plt.title('Cross-Validation Error for Different K values in ADMIXTURE')
+    plt.grid(True)
+    plt.legend()
+    output_pdf.savefig(fig)
+
 for i in range(len(q_files)):
     admixture_data = pd.read_csv(input_path+q_files[i], sep='\s+', header=None)
     column_list = []
@@ -59,6 +82,7 @@ for i in range(len(q_files)):
     # plt.savefig(f'admixture_K={i+1}.png', dpi=300, bbox_inches='tight')
     output_pdf.savefig(fig)
     plt.close(fig)
+    
 output_pdf.close()
 
 print("Time process:", time.process_time() - start, "second")
