@@ -25,7 +25,7 @@ output_pdf = PdfPages('admixture_plots.pdf')
 K_values = []
 CV_errors = []
 
-if os.path.exists('cv_error.txt'):
+if os.path.exists(input_path + 'cv_error.txt'):
     with open('cv_error.txt', 'r') as file: 
         for line in file:
             if "CV error" in line:
