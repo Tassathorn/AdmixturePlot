@@ -54,7 +54,7 @@ for i in range(len(q_files)):
               bbox_to_anchor=(1.10, 0.5),
               title="k"
               )
-    plt.title(f'ADMIXTURE Analysis (K={i+1}, 200 bootstraps)')
+    plt.title(f'ADMIXTURE Analysis (K={i+1})')
     plt.tight_layout()
     # plt.savefig(f'admixture_K={i+1}.png', dpi=300, bbox_inches='tight')
     output_pdf.savefig(fig)
