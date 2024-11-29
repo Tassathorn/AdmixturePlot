@@ -162,3 +162,12 @@ cython_debug/
 #.idea/
 admixture copy.ipynb
 admixture.ipynb
+.DS_Store
+/admixture
+admixture_K=8.png
+admixture_K=7.png
+admixture_K=6.png
+admixture_K=5.png
+admixture_K=4.png
+admixture_K=3.png
+admixture_K=2.png
