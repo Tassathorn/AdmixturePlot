@@ -25,6 +25,8 @@ output_pdf = PdfPages('admixture_plots.pdf')
 K_values = []
 CV_errors = []
 
+colors = ["#FF0000", "#FFBF00", "#80FF00", "#3DB93D", "#00FFFF", "#0040FF", "#8000FF", "#FF00BF"]
+ 
 if os.path.exists(input_path + 'cv_error.txt'):
     with open(input_path + 'cv_error.txt', 'r') as file: 
         for line in file:
@@ -43,6 +45,8 @@ if os.path.exists(input_path + 'cv_error.txt'):
     plt.title('Cross-Validation Error for Different K values in ADMIXTURE')
     plt.grid(True)
     plt.legend()
+    plt.savefig(f'cv_error_plot.png', dpi=300, bbox_inches='tight')
+    # plt.show()
     output_pdf.savefig(fig)
 
 for i in range(len(q_files)):
@@ -56,7 +60,6 @@ for i in range(len(q_files)):
     fig, ax = plt.subplots(figsize=(10, 5.625))
 
     bottom = pd.Series([0] * len(admixture_data))
-    colors = ["#FF0000", "#FFBF00", "#80FF00", "#00FF40", "#00FFFF", "#0040FF", "#8000FF", "#FF00BF"]
 
     for i, cluster in enumerate(column_list):
         ax.bar(admixture_data['Sample'], 
@@ -79,7 +82,8 @@ for i in range(len(q_files)):
               )
     plt.title(f'ADMIXTURE Analysis (K={i+1})')
     plt.tight_layout()
-    # plt.savefig(f'admixture_K={i+1}.png', dpi=300, bbox_inches='tight')
+    plt.savefig(f'admixture_K={i+1}.png', dpi=300, bbox_inches='tight')
+    # plt.show()
     output_pdf.savefig(fig)
     plt.close(fig)
     

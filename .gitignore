@@ -171,3 +171,5 @@ admixture_K=5.png
 admixture_K=4.png
 admixture_K=3.png
 admixture_K=2.png
+admixture_plots.pdf
+cv_error_plot.png
